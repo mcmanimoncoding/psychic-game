@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+    <link rel="stylesheet" href="assets/css/reset.css">
+    <link rel="stylesheet" href="assets/css/style.css">
+    <link rel="stylesheet" href="assets/javascript/game.js">
+
+    <title>Psychic Game</title>
+</head>
+
+<!-- ## Option One: Psychic Game (Basic)
+
+![Psychic](Images/1-Psychic.jpg)
+
+1. [Watch the demo](https://youtu.be/qTc45Lox97g).
+
+2. You're going to make a game just like the one in the video. Essentially, the app randomly picks a letter, and the user has to guess which letter the app chose. Put the following text on your page:
+
+3. Guess what letter I'm thinking of
+Computer randomly guesses a letter. Create Alphabet array alphaArr to generate potential inputs (slacked out)
+
+Computer chooses random element from array alphaArr store in var compGuess
+
+User inputs keystroke, 
+
+
+
+4. Wins: (# of times the user has guessed the letter correctly)
+
+5. Losses: (# of times the user has failed to guess the letter correctly after exhausting all guesses)
+
+6. Guesses Left: (# of guesses left. This will update)
+
+7. Your Guesses So Far: (the specific letters that the user typed. Display these until the user either wins or loses.)
+
+8. When the player wins, increase the Wins counter and start the game over again (without refreshing the page).
+
+9. When the player loses, increase the Losses counter and restart the game without a page refresh (just like when the user wins). -->
+
+<body>
+
+    <h1>Psychic Game</h1>
+
+    <h2>Last Computer Guess: </h2><span id="compGuess"></span>-<br>
+    <h2>User Guess: </h2><span id="guess">-</span><br>
+    <h3>Wins: <span id="wins">0</span> </h3>
+    <h3>Losses: <span id="losses">0</span> </h3>
+    <h4>Remaining Guesses: <span id="guessRemain">10</span> </h4>
+    
+    
+    <style>
+
+    </style>
+
+<script>
+
+        var winCounter = 0;
+        var loseCounter = 0;
+        var guessRemainCounter = 10;
+        function restart(){ 
+            guessCount.textContent = guessRemainCounter;
+            
+            guessRemainCounter=10;
+            genAlphabet
+
+            function genAlphabet() {
+            var alph = [];
+
+            for (var i = 65; i < 91; i++) {
+                alph.push(String.fromCharCode(i).toUpperCase());
+
+            }
+            return alph;
+        }
+
+
+        var alphabet = genAlphabet();
+        };
+
+        function genAlphabet() {
+            var alph = [];
+
+            for (var i = 65; i < 91; i++) {
+                alph.push(String.fromCharCode(i).toUpperCase());
+
+            }
+            return alph;
+        }
+
+
+        var alphabet = genAlphabet()
+
+
+
+        var compGuess = alphabet[Math.floor(Math.random() * alphabet.length - 1)]
+        var guessPrompt = "You guessed ";
+        var compPrompt = " and the Comp guessed ";
+        
+        var guessCount = document.getElementById("guessRemain");
+
+        document.onkeyup = function (event) {
+            if (guessRemainCounter === 0){
+                var compGuessText = document.getElementById("compGuess");
+                compGuessText.textContent = compGuess;
+                alert("You Lose, Sucka'!");
+                confirm("Try Again?")
+                restart();
+                guessCount.textContent = guessRemainCounter;
+                console.log();
+                
+                // If you run out of guesses generate new rand letter
+                    // rerun initialization
+                        // reset guessRemain to 10
+                
+            }
+            var userGuess = event.key.toUpperCase();
+
+            var userGuessText = document.getElementById("guess");
+                userGuessText.textContent = userGuess;
+
+            if (userGuess === compGuess) {
+                alert(guessPrompt + userGuess + " and the Comp guessed " + compGuess + "! You win, I guess!");
+                winCounter++;
+
+                var userWins = document.getElementById("wins");
+                userWins.textContent =  "" + winCounter;
+                // document.getElementById.textContent = "" + winCounter;
+
+                // $("#wins").text(winCounter);
+                compGuess = alphabet[Math.floor(Math.random() * alphabet.length - 1)];
+                var compGuessText = document.getElementById("compGuess");
+                compGuessText.textContent = compGuess;
+                return (genAlphabet);
+            }
+            else {
+                alert("Nope!");
+
+                // + guessPrompt + userGuess + compPrompt + compGuess + "! You Lose, Loser!"
+
+                var userLosses = document.getElementById("losses");
+                userLosses.textContent = "" + loseCounter;
+                // document.getElementById.textContent = "Losses: " + loseCounter;
+                // // $("#losses").text(loseCounter);
+
+
+
+                guessRemainCounter--; 
+
+                
+                guessCount.textContent = guessRemainCounter;
+
+            }
+            // If you run out of guesses generate new rand letter
+                                // rerun initialization
+                                    // reset guessRemain to 10
+            if (guessRemainCounter === 0){
+                var compGuessText = document.getElementById("compGuess");
+                compGuessText.textContent = compGuess;
+                alert("You Lose, Sucka'!");
+                confirm("Try Again?");
+                restart();
+                loseCounter++;
+                userLosses.textContent = "" + loseCounter;
+                guessCount.textContent = guessRemainCounter;
+                console.log();
+                
+                
+                
+            }
+
+           
+        }
+
+        // console.log(compGuess);
+
+
+
+        // Display userGuess and compGuess in span https://stackoverflow.com/questions/14351482/jquery-js-dynamically-change-span-text-on-input-keypress
+        // // 
+        // $(userGuess).keypress(function () {
+        //     $("guess").text(keypress);
+        // });
+
+
+
+    // var answerCounterSpan = document.getElementById("");
+    // answerCounterSpan.textContent = "whateverYourInputVarIsTitled"
+    </script>
+
+</body>
+
+</html>
